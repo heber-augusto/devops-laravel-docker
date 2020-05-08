@@ -17,7 +17,7 @@ RUN curl -sS https://getcomposer.org/installer | \
 #have composer installed on machine 
 #composer create-project laravel/laravel .
 
-#COPY ./laravel /var/www
+COPY ./laravel /var/www
 RUN ln -s public html
 
 EXPOSE 9000
