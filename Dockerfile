@@ -22,7 +22,7 @@ RUN curl -sS https://getcomposer.org/installer | \
 #have composer installed on machine 
 #composer create-project laravel/laravel .
 
-#COPY ./laravel /var/www
+COPY ./laravel /var/www
 RUN ln -s public html
 
 EXPOSE 9000
@@ -30,4 +30,5 @@ EXPOSE 9000
 COPY .docker/app/env.tmpl /usr/local/etc/
 COPY .docker/entrypoint.sh /usr/local/bin/
 
-CMD ["dockerize", "-template", "/usr/local/etc/env.tmpl:/var/www/.env", "-wait", "tcp://db:3306", "-timeout", "120s", "entrypoint.sh"]
+#CMD ["dockerize", "-template", "/usr/local/etc/env.tmpl:/var/www/.env", "-wait", "tcp://db:3306", "-timeout", "120s", "entrypoint.sh"]
+CMD ["dockerize", "-wait", "tcp://db:3306", "-timeout", "120s", "entrypoint.sh"]
